@@ -2,7 +2,7 @@
 
 # MOBILE APP FOR ‘THIS OR THAT’
 
-# PROBLEM SOLVED
+### PROBLEM SOLVED
 Our app answers the question for an indecisive user:
 Which one of these two things should I choose?
 
