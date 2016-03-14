@@ -6,7 +6,7 @@
 Our app answers the question for an indecisive user:
 Which one of these two things should I choose?
 
-MVP:
+# MVP
 A thread of usage:
 The posting user wants to see a poll of what people would choose between 2 items.  These items can be in a given category.  What thing should I buy?  What movie should I see?  Where should I eat?  The user has narrowed it down to 2, but wants some help and recommendations before making a final selection.
 
@@ -18,7 +18,7 @@ The posting user sees what the current poll answers are for their posts, as well
 
 The posting user can delete posts.
 
-Stretch:
+# Stretch
 Camera roll selection for choices
 Option to have one choice and just vote up or down
 Roll the dice on selection
@@ -26,9 +26,9 @@ Swift/Xcode implementation
 Basic web front end for admin database maintenance
 
 # TECHNOLOGIES
-Android SDK
-Java
-MongoDB
-mongoose
-AWS (storage)
-Heroku (deploy)
+*Android SDK
+*Java
+*MongoDB
+*mongoose
+*AWS (storage)
+*Heroku (deploy)
