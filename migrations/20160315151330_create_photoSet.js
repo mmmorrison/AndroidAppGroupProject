@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
     table.integer('votes');
     table.integer('decision_id');
     table.boolean('winner')
+    table.string('photoURL')
   })
 };
 

@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.integer('user_id');
     table.string('title');
-    table.integer('category');
+    table.string('category');
   })
 };
 
