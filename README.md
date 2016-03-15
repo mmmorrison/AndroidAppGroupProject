@@ -2,9 +2,10 @@
 
 # MOBILE APP FOR ‘THIS OR THAT’
 
-* https://thisorthatdb.herokuapp.com/
 * https://thisorthatdb.herokuapp.com/posters
-* https://thisorthatdb.herokuapp.com/posters/:id
+* https://thisorthatdb.herokuapp.com/posters/1
+* https://thisorthatdb.herokuapp.com/posters/2
+* https://thisorthatdb.herokuapp.com/posters/3
 * https://thisorthatdb.herokuapp.com/posters/decisions
 * https://thisorthatdb.herokuapp.com/posters/photoSet
 
