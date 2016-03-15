@@ -24,10 +24,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/decisions', function(req, res, next) {
-  User().where({id: req.param})
+  Users().where({id: req.params.id}).then(function (users) {
     Decisions().select().then(function(decisions) {
       res.json(decisions)
     })
+  })
 });
 
 router.get('/photoSet', function(req, res, next) {
@@ -38,10 +39,16 @@ router.get('/photoSet', function(req, res, next) {
 
 
 router.get('/:id', function(req, res, next) {
+  var allPhotos = [];
   Users().where({id: req.params.id}).first().then(function(users) {
     Decisions().where('user_id', users.id).then(function(decisions) {
-      PhotoSet().where('decision_id', decisions.id).then(function(photos) {
-        res.json(photos)
+      decisions.forEach(function(decision) {
+        PhotoSet().where('decision_id', decision.id).then(function(photos, index) {
+          allPhotos.push(photos)
+          if (index = photos.length-1) {
+            res.json(photos);
+          }
+        })
       })
     })
   })
