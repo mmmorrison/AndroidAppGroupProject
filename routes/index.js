@@ -23,35 +23,35 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.get('/decisions', function(req, res, next) {
-    Decisions().select().then(function(decisions) {
-      res.json(decisions)
-    })
-});
-
-router.get('/photoSet', function(req, res, next) {
-    PhotoSet().select().then(function(photoSet) {
-      res.json(photoSet)
-    })
-});
-
-
-router.get('/:id', function(req, res, next) {
-  Users().where({id: req.params.id}).first().then(function(users) {
-    PhotoSet().where('decision_id', req.params.id).then(function(photos) {
-      res.json(resource)
-    })
-  })
-});
-
-router.post('/', function(req, res, next) {
-  Decisions().insert(req.body).then(function() {
-    res.json({success: true
-    })
-  })
-})
-
-
+// router.get('/decisions', function(req, res, next) {
+//     Decisions().select().then(function(decisions) {
+//       res.json(decisions)
+//     })
+// });
+//
+// router.get('/photoSet', function(req, res, next) {
+//     PhotoSet().select().then(function(photoSet) {
+//       res.json(photoSet)
+//     })
+// });
+//
+//
+// router.get('/:id', function(req, res, next) {
+//   Users().where({id: req.params.id}).first().then(function(users) {
+//     PhotoSet().where('decision_id', req.params.id).then(function(photos) {
+//       res.json(resource)
+//     })
+//   })
+// });
+//
+// router.post('/', function(req, res, next) {
+//   Decisions().insert(req.body).then(function() {
+//     res.json({success: true
+//     })
+//   })
+// })
+//
+//
 
 
 module.exports = router;
