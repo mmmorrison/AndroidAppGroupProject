@@ -2,7 +2,13 @@
 
 # MOBILE APP FOR ‘THIS OR THAT’
 
-https://thisorthatdb.herokuapp.com/ 
+https://thisorthatdb.herokuapp.com/
+https://thisorthatdb.herokuapp.com/posters
+https://thisorthatdb.herokuapp.com/posters/:id
+https://thisorthatdb.herokuapp.com/posters/decisions
+https://thisorthatdb.herokuapp.com/posters/photoSet
+
+
 
 ### PROBLEM SOLVED
 Our app answers the question for an indecisive user:
