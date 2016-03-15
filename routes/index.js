@@ -24,9 +24,8 @@ router.get('/', function(req, res, next) {
 });
 
 // router.get('/test/:id', function(req, res, next) {
-//   Learning().where({id: req.params.id}).then(function(results) {
-//     Comments().where('learning_id, req.params.id').then(function(comments) {
-//       resource.comments = comments;
+//   Users().where({id: req.params.id}).then(function(users) {
+//     Decisions().where('user_id, req.params.id').then(function(decisions) {
 //       res.json(results)
 //     })
 //   })
@@ -34,16 +33,15 @@ router.get('/', function(req, res, next) {
 
 //
 // router.get('/:id', function(req, res, next) {
-//   Learning().where({id: req.params.id}).first().then(function(resource) {
-//     Comments().where('learning_id', req.params.id).then(function(comments) {
-//       resource.comments = comments;
+//   Users().where({id: req.params.id}).first().then(function(users) {
+//     PhotoSet().where('decision_id', req.params.id).then(function(photos) {
 //       res.json(resource)
 //     })
 //   })
 // });
 //
 // router.post('/', function(req, res, next) {
-//   Learning().insert(req.body).then(function() {
+//   Decisions().insert(req.body).then(function() {
 //     res.json({success: true
 //     })
 //   })
