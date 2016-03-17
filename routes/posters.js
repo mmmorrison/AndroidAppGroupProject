@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
 router.get('/decisions', function(req, res, next) {
   Users().where({id: req.params.id}).then(function (users) {
     Decisions().select().then(function(decisions) {
-      res.json(decisions)
+      res.json({"decisions":decisions})
     })
   })
 });
