@@ -30,6 +30,7 @@ router.post('/', function(req, res, next) {
   PhotoSet().where({id: req.params.id}).first().update('votes', req.body.votes).then(function(votes, err) {
     console.log('err = ', err);
     res.json({success: true});
+    console.log('res******', res);
   })
 })
 
