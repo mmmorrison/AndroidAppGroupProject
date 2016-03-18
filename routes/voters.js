@@ -22,15 +22,9 @@ router.get('/', function(req, res, next) {
   })
 });
 
-
-
 router.post('/', function(req, res, next) {
-  console.log('*********req.body: ', req.body);
-  console.log('******* req.body.votes', req.body.votes);
   PhotoSet().insert(req.body).then(function(votes, err) {
-    console.log('err = ', err);
     res.json({success: true});
-    console.log('res******', res);
   })
 })
 
