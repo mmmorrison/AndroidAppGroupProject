@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   console.log('*********req.body: ', req.body);
-  PhotoSet().where('id', req.body.id).first().update(req.body).then(function(votes, err) {
+  PhotoSet().where('id', req.body.id).first().update('votes', req.body.votes).then(function(votes, err) {
     console.log('err = ', err);
     res.json({success: true});
   })
