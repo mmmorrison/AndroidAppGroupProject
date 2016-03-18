@@ -33,7 +33,7 @@ router.get('/decisions', function(req, res, next) {
 
 router.get('/photoSet', function(req, res, next) {
     PhotoSet().select().then(function(photoSet) {
-      res.json("photos":photoSet)
+      res.json({"photos":photoSet})
     })
 });
 
