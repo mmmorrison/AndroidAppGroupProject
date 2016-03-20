@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/new', function(req, res, next) {
-  PhotoSet().select().then(function(results) {
+  Decisions().select().then(function(results) {
     res.json(results);
   })
 });
