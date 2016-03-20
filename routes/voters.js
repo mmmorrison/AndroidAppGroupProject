@@ -22,6 +22,8 @@ router.get('/', function(req, res, next) {
   })
 });
 
+
+
 router.post('/', function(req, res, next) {
   PhotoSet().insert(req.body).then(function(votes, err) {
     res.json({success: true});
