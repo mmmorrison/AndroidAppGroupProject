@@ -31,7 +31,9 @@ router.get('/new', function(req, res, next) {
 
 router.post('/new', function (req, res, next) {
   PhotoSet().insert(req.body).then(function(photos) {
-    console.log(photos);
+    console.log("*******************");
+    console.log(req.body);
+    console.log("*******************");
     res.json(photos)
   })
 })
