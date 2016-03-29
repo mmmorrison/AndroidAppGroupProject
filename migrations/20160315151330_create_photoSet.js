@@ -16,3 +16,4 @@ exports.down = function(knex, Promise) {
 
 // heroku pg:reset postgresql-aerodynamic-70249
 // heroku pg:push ThisOrThat postgresql-aerodynamic-70249 --app thisorthatdb
+// https://thisorthatdb.herokuapp.com/new
