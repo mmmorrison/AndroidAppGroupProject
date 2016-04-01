@@ -43,9 +43,6 @@ router.post('/new', function (req, res, next) {
 
 router.post('/edit/:id', function (req, res, next) {
   Decisions().where('id', req.params.id).first().update(req.body).then(function(photos) {
-    console.log("*******************");
-    console.log(req.body);
-    console.log("*******************");
     res.json(photos)
   })
 })
