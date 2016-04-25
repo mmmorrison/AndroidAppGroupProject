@@ -54,6 +54,8 @@ router.get('/:id', function(req, res, next) {
   })
 });
 
+router.get('/:id')
+
 router.post('/', function(req, res, next) {
   Decisions().insert(req.body).then(function() {
     res.json({success: true

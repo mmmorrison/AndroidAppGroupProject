@@ -14,6 +14,9 @@ exports.down = function(knex, Promise) {
   return knex.schema.dropTable('photoSet');
 };
 
-// heroku pg:reset postgresql-aerodynamic-70249
+// heroku pg:reset postgresql-aerodynamic-70249 --confirm thisorthatdb
 // heroku pg:push ThisOrThat postgresql-aerodynamic-70249 --app thisorthatdb
 // https://thisorthatdb.herokuapp.com/new
+
+
+postgresql-triangular-60157
