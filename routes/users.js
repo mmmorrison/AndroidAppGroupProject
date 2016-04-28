@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.get('/register/:name/:password'){
+router.get('/register/:name/:password', function(req,res,next) {
   bcrypt.genSalt(10, function(err, salt) {
    bcrypt.hash(req.params.password, salt, function(err, hash) {
      if !err {
@@ -27,9 +27,9 @@ router.get('/register/:name/:password'){
       } else {
           res.send({status: "failure"})
       }
-     }
+    })
    });
- }
+ });
 
 
 
