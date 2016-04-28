@@ -17,12 +17,6 @@ function PhotoSet() {
 
 /* GET home page. */
 
-router.get('/', function(req, res, next) {
-  Users().select().then(function(results) {
-    res.json(results);
-  })
-});
-
 router.get('/new', function(req, res, next) {
   Decisions().select().then(function(results) {
     res.json(results);
