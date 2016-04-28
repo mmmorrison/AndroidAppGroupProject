@@ -15,8 +15,7 @@ exports.down = function(knex, Promise) {
 };
 
 // heroku pg:reset postgresql-aerodynamic-70249 --confirm thisorthatdb
+// heroku pg:reset [heroku db name] -- confirm [app name]
 // heroku pg:push ThisOrThat postgresql-aerodynamic-70249 --app thisorthatdb
+// heroku pg:push [local db name] [heorku db name] --app [app name]
 // https://thisorthatdb.herokuapp.com/new
-
-
-postgresql-triangular-60157
