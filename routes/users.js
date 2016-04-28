@@ -17,41 +17,62 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/register/:name/:password', function(req,res,next) {
-  bcrypt.genSalt(10, function(err, salt) {
-   bcrypt.hash(req.params.password, salt, function(err, hash) {
-     if (!err) {
-       Users().insert({name: req.params.name,
-                    password: hash}).returning('id').then(function(results) {
-                      res.send({status: "success",
-                                id: results[0]})
-                    })
-                    .catch(function(error) {
-                      console.log('err: ', error);
-                      res.send({status: "failure"})
-                    })
-      } else {
-          res.send({status: "failure"})
-      }
-    })
-   });
- });
+  // If user exists, check that the password is correct.
+  // If the password is correct, return the id,
+  // otherwise return a failure status.
+  Users().where('name', req.params.name).returning('id','password').then(function(results) {
+    console.log('results of users query of id and password: err' , results);
+    if (results.length != 0) {
+      bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(req.params.password, salt, function(err, hash) {
+          console.log('hash:', hash);
+          console.log('password: ', req.params.password);
+          bcrypt.compare(hash, results.password, function(err) {
+            if (!err) {
+              res.sendStatus(results[0].id.toString());
+            } else {
+              res.sendStatus("-1"); // wrong password
+            }
+          })
+        })
+      })
+    } else {
+      // Non-existing user
+      // Hash the password and store it in the database
+      bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(req.params.password, salt, function(err, hash) {
+        Users().insert({name: req.params.name,
+                     password: hash}).returning('id').then(function(results) {
+                       res.sendStatus(results[0].id.toString())
+                     })
+                     .catch(function(error) {
+                       console.log('err: ', error);
+                       res.sendStatus("-1");
+                     })
 
-//  return trx.insert(info).into('books');
-//       });
-//     });
-//
-// })
-// .then(function(inserts) {
-//   console.log(inserts.length + ' new books saved.');
-// })
-// .catch(function(error) {
-//   // If we get here, that means that neither the 'Old Books' catalogues insert,
-//   // nor any of the books inserts will have taken place.
-//   console.error(error);
-// });
-
-
-
+       })
+  })
+}
+})
+})
+ //  bcrypt.genSalt(10, function(err, salt) {
+ //   bcrypt.hash(req.params.password, salt, function(err, hash) {
+ //     if (!err) {
+ //       Users().insert({name: req.params.name,
+ //                    password: hash}).returning('id').then(function(results) {
+ //                      res.send({status: "success",
+ //                                id: results[0]})
+ //                    })
+ //                    .catch(function(error) {
+ //                      console.log('err: ', error);
+ //                      res.send({status: "failure"})
+ //                    })
+ //      } else {
+ //          res.send({status: "failure"})
+ //      }
+ //    })
+ //   });
+ // });
 
 
 module.exports = router;
