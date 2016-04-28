@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 router.get('/register/:name/:password', function(req,res,next) {
   bcrypt.genSalt(10, function(err, salt) {
    bcrypt.hash(req.params.password, salt, function(err, hash) {
-     if !err {
+     if (!err) {
        Users.insert({name: name,
                     password: hash}).then(function() {
                       res.send({status: "success"})
