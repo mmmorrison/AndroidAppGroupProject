@@ -21,6 +21,7 @@ router.get('/register/:name/:password', function(req,res,next) {
   // If the password is correct, return the id,
   // otherwise return a failure status.
   Users().where('name', req.params.name).returning('id','password').then(function(results) {
+    console.log("***********", req.params);
     if (results.length != 0) {
       bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(req.params.password, salt, function(err, hash) {
@@ -43,31 +44,13 @@ router.get('/register/:name/:password', function(req,res,next) {
                        res.sendStatus(results[0].id.toString())
                      })
                      .catch(function(error) {
-                     })
-
-       })
+            })
+         })
+      })
+    }
   })
-}
 })
-})
- //  bcrypt.genSalt(10, function(err, salt) {
- //   bcrypt.hash(req.params.password, salt, function(err, hash) {
- //     if (!err) {
- //       Users().insert({name: req.params.name,
- //                    password: hash}).returning('id').then(function(results) {
- //                      res.send({status: "success",
- //                                id: results[0]})
- //                    })
- //                    .catch(function(error) {
- //                      console.log('err: ', error);
- //                      res.send({status: "failure"})
- //                    })
- //      } else {
- //          res.send({status: "failure"})
- //      }
- //    })
- //   });
- // });
+
 
 
 module.exports = router;
