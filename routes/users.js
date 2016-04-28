@@ -21,16 +21,12 @@ router.get('/register/:name/:password', function(req,res,next) {
   // If the password is correct, return the id,
   // otherwise return a failure status.
   Users().where('name', req.params.name).returning('id','password').then(function(results) {
-    // console.log('results of users query of id and password: err' , results);
     if (results.length != 0) {
       bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(req.params.password, salt, function(err, hash) {
-          console.log('hash: ', hash);
-          console.log('password: ', results[0].password);
           bcrypt.compare(hash, results[0].password, function(err) {
             if (!err) {
               res.sendStatus(results[0].id.toString());
-              console.log("*****************", results[0].id.toString());
             } else {
               res.sendStatus("-1"); // wrong password
             }
@@ -47,8 +43,6 @@ router.get('/register/:name/:password', function(req,res,next) {
                        res.sendStatus(results[0].id.toString())
                      })
                      .catch(function(error) {
-                      //  console.log('err: ', error);
-                       res.sendStatus("-1");
                      })
 
        })
