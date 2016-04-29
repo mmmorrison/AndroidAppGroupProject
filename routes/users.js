@@ -16,15 +16,15 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.get('/register/:name/:password', function(req,res,next) {
+router.get('/register', function(req,res,next) {
   // If user exists, check that the password is correct.
   // If the password is correct, return the id,
   // otherwise return a failure status.
-  Users().where('name', req.params.name).returning('id','password').then(function(results) {
-    console.log("***********", req.params);
+  Users().where('name', req.body.name).returning('id','password').then(function(results) {
+    console.log("***********", req.body);
     if (results.length != 0) {
       bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(req.params.password, salt, function(err, hash) {
+        bcrypt.hash(req.body.password, salt, function(err, hash) {
           bcrypt.compare(hash, results[0].password, function(err) {
             if (!err) {
               res.sendStatus(results[0].id.toString());
