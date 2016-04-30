@@ -1,0 +1,22 @@
+id,user_id,title,category,voteA,voteB,WinnerA,WinnerB,picA,picB
+6,24,Which Jeans,Clothing,,,,,https://s3-us-west-2.amazonaws.com/thisorthatphotofiles/blackJeans.jpeg,https://s3-us-west-2.amazonaws.com/thisorthatphotofiles/blueJeans.jpeg
+7,24,Which Shoes,Clothing,,,,,https://s3-us-west-2.amazonaws.com/thisorthatphotofiles/brownShoe.png,https://s3-us-west-2.amazonaws.com/thisorthatphotofiles/creamShoe.png
+8,24,Which Shirt,Clothing,,,,,https://s3-us-west-2.amazonaws.com/thisorthatphotofiles/plaidShirt.jpeg,https://s3-us-west-2.amazonaws.com/thisorthatphotofiles/tealShirt.jpg
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
