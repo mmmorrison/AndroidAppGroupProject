@@ -21,6 +21,7 @@ router.post('/register', function(req,res,next) {
 
   Users().where('name', req.body.name).returning('id','password').then(function(results) {
     console.log("***********", typeof req.body);
+    console.log("***********", results);
     if (results.length != 0) {
       console.log("********results.length != 0");
       bcrypt.genSalt(10, function(err, salt) {
