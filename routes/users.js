@@ -17,12 +17,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/register', function(req,res,next) {
+  console.log("***********register initiated");
   // If user exists, check that the password is correct.
   // If the password is correct, return the id,
   // otherwise return a failure status.
   Users().where('name', req.body.name).returning('id','password').then(function(results) {
     console.log("***********", req.body);
     if (results.length != 0) {
+      console.log("********results.length != 0");
       bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
           bcrypt.compare(hash, results[0].password, function(err) {
@@ -35,6 +37,7 @@ router.get('/register', function(req,res,next) {
         })
       })
     } else {
+      console.log("*********else");
       // Non-existing user
       // Hash the password and store it in the database
       bcrypt.genSalt(10, function(err, salt) {
