@@ -30,7 +30,7 @@ router.post('/register', function(req,res,next) {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
           console.log("**********HASH", hash);
           bcrypt.compare(hash, results[0].password, function(err) {
-            console.log("***********RESULTS", results);
+            console.log("***********RESULTS", results[0]);
             if (!err) {
               res.sendStatus(results[0].id.toString());
             } else {
@@ -46,7 +46,7 @@ router.post('/register', function(req,res,next) {
 
         bcrypt.hash(req.body.password, salt, function(err, hash) {
         Users().insert({email: req.body.email,
-                     password: hash}).returning('id').then(function(results) {
+                     password: req.body.password}).returning('id').then(function(results) {
 
                        res.sendStatus(results[0].id.toString())
                      })
