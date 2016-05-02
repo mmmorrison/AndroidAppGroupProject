@@ -46,8 +46,8 @@ router.post('/register', function(req,res,next) {
 
         bcrypt.hash(req.body.password, salt, function(err, hash) {
         Users().insert({email: req.body.email,
-                     password: crypted}).returning('id').then(function(results) {
-                       console.log("****************CRYPTED", crypted);
+                     password: hash}).returning('id').then(function(results) {
+                       console.log("****************HASH", hash);
 
                        res.sendStatus(results[0].id.toString())
                      })
