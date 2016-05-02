@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.get('/register', function(req,res,next) {
+router.post('/register', function(req,res,next) {
   console.log("***********register initiated");
 
   // Users().where('name', req.body.name).returning('id','password').then(function(results) {
