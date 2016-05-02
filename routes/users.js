@@ -21,7 +21,7 @@ router.get('/register', function (req, res, next) {
 })
 
 router.post('/register', function(req,res,next) {
-  var crypted = bcrypt.hashSync(req.body.password, 10);
+  // var crypted = bcrypt.hashSync(req.body.password, 10);
   Users().where('email', req.body.email).returning('id','password').then(function(results) {
     console.log("***********body", req.body);
     if (results.length != 0) {
@@ -34,7 +34,7 @@ router.post('/register', function(req,res,next) {
             if (!err) {
               res.sendStatus(results[0].id.toString());
             } else {
-              res.sendStatus("1");
+              res.sendStatus("-1");
             }
           })
         })
@@ -47,7 +47,6 @@ router.post('/register', function(req,res,next) {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
         Users().insert({email: req.body.email,
                      password: hash}).returning('id').then(function(results) {
-                       console.log("****************HASH", hash);
 
                        res.sendStatus(results[0].id.toString())
                      })
@@ -58,14 +57,6 @@ router.post('/register', function(req,res,next) {
     }
   })
 })
-
-// router.post('/login', function(req, res, next) {
-//   var crypted = bcrypt.hashSync(req.body.password, 8);
-//   Users().insert({email: req.body.email, password: crypted}).then(function(val){
-//     res.cookie("user", req.body.email);
-//     res.redirect("/");
-//   });
-// });
 
 
 
