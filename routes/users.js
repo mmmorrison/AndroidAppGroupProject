@@ -21,13 +21,16 @@ router.get('/register', function (req, res, next) {
 })
 
 router.post('/register', function(req,res,next) {
+  var crypted = bcrypt.hashSync(req.body.password, 10);
   Users().where('email', req.body.email).returning('id','password').then(function(results) {
     console.log("***********body", req.body);
     if (results.length != 0) {
 
       bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
+          console.log("**********HASH", hash);
           bcrypt.compare(hash, results[0].password, function(err) {
+            console.log("***********RESULTS", results);
             if (!err) {
               res.sendStatus(results[0].id.toString());
             } else {
@@ -40,9 +43,10 @@ router.post('/register', function(req,res,next) {
     } else {
 
       bcrypt.genSalt(10, function(err, salt) {
+
         bcrypt.hash(req.body.password, salt, function(err, hash) {
         Users().insert({email: req.body.email,
-                     password: req.body.password}).returning('id').then(function(results) {
+                     password: crypted}).returning('id').then(function(results) {
                        res.sendStatus(results[0].id.toString())
                      })
                      .catch(function(error) {
@@ -52,6 +56,14 @@ router.post('/register', function(req,res,next) {
     }
   })
 })
+
+// router.post('/login', function(req, res, next) {
+//   var crypted = bcrypt.hashSync(req.body.password, 8);
+//   Users().insert({email: req.body.email, password: crypted}).then(function(val){
+//     res.cookie("user", req.body.email);
+//     res.redirect("/");
+//   });
+// });
 
 
 
