@@ -16,38 +16,31 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.get('/register', function (req, res, next) {
-  res.send("at the register page")
-})
-
-router.post('/register', function(req,res,next) {
-  // var crypted = bcrypt.hashSync(req.body.password, 10);
+router.get('/register', function(req,res,next) {
+  // If user exists, check that the password is correct.
+  // If the password is correct, return the id,
+  // otherwise return a failure status.
   Users().where('email', req.body.email).returning('id','password').then(function(results) {
-    console.log("***********body", req.body);
+    console.log("***********", req.body);
     if (results.length != 0) {
-
       bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
-          console.log("**********HASH", hash);
           bcrypt.compare(hash, results[0].password, function(err) {
-            console.log("***********RESULTS", results[0]);
             if (!err) {
               res.sendStatus(results[0].id.toString());
             } else {
-              res.sendStatus("-1");
+              res.sendStatus("-1"); // wrong password
             }
           })
         })
       })
-
     } else {
-
+      // Non-existing user
+      // Hash the password and store it in the database
       bcrypt.genSalt(10, function(err, salt) {
-
         bcrypt.hash(req.body.password, salt, function(err, hash) {
         Users().insert({email: req.body.email,
-                     password: req.body.password}).returning('id').then(function(results) {
-
+                     password: hash}).returning('id').then(function(results) {
                        res.sendStatus(results[0].id.toString())
                      })
                      .catch(function(error) {
@@ -57,12 +50,6 @@ router.post('/register', function(req,res,next) {
     }
   })
 })
-
-
-
-
-
-
 
 
 
