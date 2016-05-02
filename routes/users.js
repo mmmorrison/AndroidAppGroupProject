@@ -21,7 +21,7 @@ router.get('/register', function (req, res, next) {
 })
 
 router.post('/register', function(req,res,next) {
-  Users().where('name', req.body.name).returning('id','password').then(function(results) {
+  Users().where('email', req.body.email).returning('id','password').then(function(results) {
     console.log("***********body", req.body);
     if (results.length != 0) {
 
@@ -41,7 +41,7 @@ router.post('/register', function(req,res,next) {
 
       bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
-        Users().insert({name: req.body.name,
+        Users().insert({email: req.body.email,
                      password: req.body.password}).returning('id').then(function(results) {
                        res.sendStatus(results[0].id.toString())
                      })
