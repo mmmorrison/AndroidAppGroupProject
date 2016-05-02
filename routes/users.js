@@ -16,12 +16,13 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.post('/register', function(req,res,next) {
-  console.log("***********register");
+router.get('/register', function (req, res, next) {
+  res.send("at the register page")
+})
 
+router.post('/register', function(req,res,next) {
   Users().where('name', req.body.name).returning('id','password').then(function(results) {
     console.log("***********body", req.body);
-    console.log("***********results", results);
     if (results.length != 0) {
 
       bcrypt.genSalt(10, function(err, salt) {
@@ -39,19 +40,24 @@ router.post('/register', function(req,res,next) {
     } else {
 
       bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(req.params.password, salt, function(err, hash) {
-        Users().insert({name: req.params.name,
-                     password: hash}).returning('id').then(function(results) {
+        bcrypt.hash(req.body.password, salt, function(err, hash) {
+        Users().insert({name: req.body.name,
+                     password: req.body.password}).returning('id').then(function(results) {
                        res.sendStatus(results[0].id.toString())
                      })
                      .catch(function(error) {
             })
          })
       })
-
     }
   })
 })
+
+
+
+
+
+
 
 
 
