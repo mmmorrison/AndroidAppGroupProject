@@ -34,7 +34,7 @@ router.post('/register', function(req,res,next) {
             if (!err) {
               res.sendStatus(results[0].id.toString());
             } else {
-              res.sendStatus("-1");
+              res.sendStatus("1");
             }
           })
         })
