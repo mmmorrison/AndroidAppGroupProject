@@ -7,8 +7,6 @@ function Users() {
   return knex('users')
 }
 
-
-
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   Users().select().then(function(results) {
@@ -21,16 +19,11 @@ router.get('/register', function (req, res, next) {
 })
 
 router.post('/register', function(req,res,next) {
-  // var crypted = bcrypt.hashSync(req.body.password, 10);
   Users().where('email', req.body.email).returning('id','password').then(function(results) {
-    console.log("***********body", req.body);
     if (results.length != 0) {
-
       bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
-          console.log("**********HASH", hash);
           bcrypt.compare(hash, results[0].password, function(err) {
-            console.log("***********RESULTS", results[0]);
             if (!err) {
               res.sendStatus(results[0].id.toString());
             } else {
