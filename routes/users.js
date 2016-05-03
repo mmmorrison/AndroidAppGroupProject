@@ -22,6 +22,7 @@ router.get('/register', function(req,res,next) {
   // otherwise return a failure status.
   Users().where('email', req.body.email).returning('id','password').then(function(results) {
     console.log("***********", req.body);
+    console.log("PARAMS********", req.body.params);
     if (results.length != 0) {
       bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
