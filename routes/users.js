@@ -39,7 +39,6 @@ router.get('/register', function(req,res,next) {
       // Hash the password and store it in the database
       bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
-          console.log("****************HASH", hash);
         Users().insert({email: req.body.email,
                      password: hash}).returning('id').then(function(results) {
                        res.sendStatus(results[0].id.toString())
