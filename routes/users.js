@@ -19,8 +19,9 @@ router.get('/register', function (req, res, next) {
 })
 
 router.post('/register', function(req,res,next) {
+  console.log("made it******************************");
   Users().where('email', req.body.email).returning('id','password').then(function(results) {
-    if (results.length != 0) {
+    if (results.length !== 0) {
       bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
           bcrypt.compare(hash, results[0].password, function(err) {
