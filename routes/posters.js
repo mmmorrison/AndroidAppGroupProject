@@ -31,10 +31,10 @@ router.get('/decisions', function(req, res, next) {
 });
 
 router.get('/decisions/:user_id', function(req,res){
-  console.log("working", req.params.user_id);
+  console.log("*******working", req.params.user_id)
   Decisions().where({user_id:req.params.user_id}).then(function(response){
-    console.log("response", response);
-    res.json({"decisions":decisions})
+    console.log("********response", response)
+    res.json({"decisions":response})
   })
 })
 
