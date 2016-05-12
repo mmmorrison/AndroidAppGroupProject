@@ -24,7 +24,7 @@ router.post('/register', function(req,res,next) {
 
   Users().where('email', req.body.email).returning('id','password').then(function(results) {
 
-    console.log("databaseRETURN******".results);
+    console.log("databaseRETURN******", results);
 
     if (results.length !== 0) {
       bcrypt.genSalt(10, function(err, salt) {
@@ -34,9 +34,9 @@ router.post('/register', function(req,res,next) {
 
               console.log("AlreadyUSER*******",results);
 
-              res.sendStatus(results[0].id.toString());
+              res.send(results[0].id.toString());
             } else {
-              res.sendStatus("-1");
+              res.send("-1");
             }
           })
         })
@@ -52,7 +52,7 @@ router.post('/register', function(req,res,next) {
 
                        console.log("newUSER******", results);
 
-                       res.sendStatus(results[0].id.toString())
+                       res.send(results[0].id.toString())
                      })
                      .catch(function(error) {
             })
