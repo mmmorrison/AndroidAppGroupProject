@@ -22,8 +22,9 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.get('/decisions/:id', function(req, res, next) {
-  Users().where({id: req.params.id}).then(function (users) {
+router.get('/decisions/:user_id', function(req, res, next) {
+  console.log(req.params.user_id);
+  Users().where({user_id: req.params.user_id}).then(function (users) {
     Decisions().select().then(function(decisions) {
       res.json({"decisions":decisions})
     })
