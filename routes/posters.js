@@ -14,7 +14,6 @@ function PhotoSet() {
   return knex('photoSet')
 }
 
-
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
@@ -30,6 +29,14 @@ router.get('/decisions', function(req, res, next) {
     })
   })
 });
+
+router.get('/decisions/:user_id', function(req,res){
+  console.log("*******working", req.params.user_id)
+  Decisions().where({user_id:req.params.user_id}).then(function(response){
+    console.log("********response", response)
+    res.json({"decisions":response})
+  })
+})
 
 router.get('/photoSet', function(req, res, next) {
     PhotoSet().select().then(function(photoSet) {
@@ -54,9 +61,9 @@ router.get('/:id', function(req, res, next) {
   })
 });
 
-router.get('/:id')
 
 router.post('/', function(req, res, next) {
+  console.log("router.post /");
   Decisions().insert(req.body).then(function() {
     res.json({success: true
     })
