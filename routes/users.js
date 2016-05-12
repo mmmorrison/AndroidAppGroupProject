@@ -45,7 +45,7 @@ router.post('/register', function(req, res, next) {
                             password: hash
                         }).returning('id').then(function(results) {
                             console.log("returningNEW", results)
-                            res.send(results[0].id.toString())
+                            res.send(results[0].toString())
                         })
                         .catch(function(error) {})
                 })
