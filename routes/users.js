@@ -19,7 +19,7 @@ router.get('/register', function (req, res, next) {
 })
 
 router.post('/register', function(req,res,next) {
-  console.log("made it******************************");
+  console.log("made it******************************", req.body);
   Users().where('email', req.body.email).returning('id','password').then(function(results) {
     if (results.length !== 0) {
       bcrypt.genSalt(10, function(err, salt) {
